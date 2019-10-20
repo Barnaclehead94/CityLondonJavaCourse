@@ -1,47 +1,100 @@
-public class Heater
+import java.util.ArrayList;
+
+public class MusicOrganizer
 {
-    // instance variables - replace the example below with your own
-    private int temperature;
-    private int min;
-    private int max;
-    private int increment;
-    
-    public Heater(int minHeat, int maxHeat)
+    // An ArrayList for storing the file names of music files.
+    private ArrayList<String> files;
+    private int x;
+    private int y;
+
+    /**
+     * Create a MusicOrganizer
+     */
+    public MusicOrganizer()
     {
-        // constructor for heater class 
-        min = minHeat; //lowest temperature
-        max = maxHeat; // highest temperature
-        increment = 1; // change temperate by...
-        temperature = min; // starting temperature
+        files = new ArrayList<String>();
     }
-    
-    public void warmer() // raise temperature
+
+    /**
+     * Add a file to the collection.
+     * @param filename The file to be added.
+     */
+    public void addFile(String filename)
     {
-        if(temperature < max)
-        {
-        temperature += increment;
+        files.add(filename);
+    }
+
+    /**
+     * Return the number of files in the collection.
+     * @return The number of files in the collection.
+     */
+    public int getNumberOfFiles()
+    {
+        return files.size();
+    }
+
+    /**
+     * List a file from the collection.
+     * @param index The index of the file to be listed.
+     */
+    public void listFile(int index)
+    {
+        if(index >= 0 && index < files.size()) {
+            String filename = files.get(index);
+            System.out.println(filename);
         }
     }
-    
-    public void cooler() // lower temperature
+
+    /**
+     * Remove a file from the collection.
+     * @param index The index of the file to be removed.
+     */
+    public void removeFile(int index)
     {
-        if(temperature > min)
-        {
-        temperature -= increment;
+        if(index >= 0 && index < files.size()) {
+            files.remove(index);
         }
     }
-    
-    public int getTemperature() // get temperature
+
+    public void multiplesOfFive() // display all multiples of 5 from 10 to 95
     {
-        return temperature;
-    }
-    
-    public void setIncrement(int value) // set temp change value 
-    {
-        if(value > 0)
+        x = 10;
+        y = 95;
+        while(x <= y)
         {
-        increment = value;
+            System.out.println(x);
+            x += 5;
         }
     }
-    
+
+    public void findFirst(String searchString) // shows where song is in array
+    {
+        int index = 0;
+
+        for(String file: files)
+        {
+            String filename = files.get(index);
+            if(filename.contains(searchString))
+            {
+                System.out.println("The first matching file is at: " + index);
+
+            }
+            index ++;
+
+        }
+    }
+
+    public void listAllMusic() // lists all songs by track no.
+    {
+        int index = 0;
+        for(String file: files)
+        {
+            System.out.println(index + ": " + file);
+            index ++;
+        }
+
+    }
+
 }
+
+    
